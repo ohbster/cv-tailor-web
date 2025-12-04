@@ -1,8 +1,81 @@
 # CV Tailor - Roadmap
 
-## 🚀 Current Sprint: Authentication & Security
+## 🚀 Current Sprint: USER/CANDIDATE Architecture Complete ✅
 
-### Phase 1: Security Foundations (IMMEDIATE)
+### COMPLETED: USER/CANDIDATE Separation (December 3, 2025)
+✅ Created USER table for authentication (email, password, role)
+✅ Refactored CANDIDATE as profile table (linked to USER)
+✅ Added RECRUITER table for future recruiter profiles
+✅ Migrated database successfully
+✅ Updated all models, schemas, and API endpoints
+✅ Backend running with new architecture
+
+---
+
+## 🔒 CRITICAL SECURITY IMPROVEMENTS NEEDED
+
+### Phase 1: API Endpoint Security (HIGH PRIORITY)
+**Issue**: Many API endpoints are currently unprotected and accessible without authentication.
+
+#### Required Changes:
+- [ ] **Audit all endpoints** - Identify which endpoints are public vs protected
+- [ ] **Protect admin endpoints** - Remove admin login from public-facing API
+  - [ ] Create separate admin login endpoint: `POST /auth/admin/login`
+  - [ ] Add IP whitelist validation for admin endpoints
+  - [ ] Admin endpoints should only be accessible behind VPN
+  - [ ] Consider separate subdomain: `admin.yourapp.com`
+- [ ] **Separate login endpoints by role**:
+  - [ ] `POST /auth/candidate/login` - Public, only allows role='candidate'
+  - [ ] `POST /auth/recruiter/login` - Public, only allows role='recruiter'
+  - [ ] `POST /auth/admin/login` - Internal only, only allows role='admin'/'developer'
+- [ ] **Protect data access endpoints**:
+  - [ ] Skills management endpoints - require authentication
+  - [ ] Certifications endpoints - require authentication
+  - [ ] Job description endpoints - require authentication
+  - [ ] Resume endpoints - require authentication (already protected)
+  - [ ] Admin dashboard endpoints - require admin role (already protected)
+- [ ] **Fix registration endpoint** - Accept JSON body instead of individual parameters
+- [ ] **Add rate limiting** - Prevent brute force attacks on login endpoints
+- [ ] **Add IP whitelisting** for admin routes (optional, in addition to VPN)
+
+### Phase 2: Authentication Enhancements
+- [ ] Implement refresh tokens (current: access tokens only)
+- [ ] Add "Remember Me" functionality
+- [ ] Add password reset flow (email-based)
+- [ ] Add email verification for new accounts
+- [ ] Add two-factor authentication (2FA) for admin accounts
+- [ ] Add account lockout after N failed login attempts
+- [ ] Add session management (view active sessions, logout all)
+
+### Phase 3: Database Security
+- [ ] Ensure only certain endpoints / functions / pages / users can access certain tables
+  - [ ] A user should only be able to retrieve their own resume, skills, etc
+  - [ ] A function / pod / process should have least privelege access to only tables needed to perform its task
+
+### Phase 4: Infrastructure Security
+- [ ] End reliance on .env file
+  - [ ] Store tokens, keys, secrets, and passwords in secret manager / key vault
+  - [ ] Refactor code to pull secrets from secret manager
+- [ ] Set up VPN for admin access
+- [ ] Configure firewall rules for admin subdomain
+- [ ] Add SSL/TLS certificates (HTTPS only)
+- [ ] Implement CORS properly (currently allows all origins in dev)
+- [ ] Add security headers (HSTS, CSP, X-Frame-Options, etc.)
+- [ ] Set up WAF (Web Application Firewall)
+- [ ] Implement request logging and audit trails
+- [ ] Add intrusion detection monitoring
+
+### Success Criteria
+✅ No public endpoint allows admin login
+✅ All data access endpoints require authentication
+✅ Admin endpoints only accessible behind VPN
+✅ Separate login flows for candidates, recruiters, admins
+✅ Rate limiting prevents brute force attacks
+✅ All endpoints properly documented with security requirements
+
+---
+
+## 🚀 Phase 1: Core Features (NEXT)
 **Goal**: Implement authentication and fix security vulnerabilities
 
 #### Database Changes
