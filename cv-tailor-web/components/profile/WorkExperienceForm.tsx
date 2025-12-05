@@ -27,7 +27,16 @@ export default function WorkExperienceForm({ experience, onSubmit, onCancel }: W
     setError("");
 
     try {
-      await onSubmit(formData);
+      // Clean up empty strings to null for optional fields
+      const cleanedData: WorkExperienceCreate = {
+        company: formData.company,
+        role: formData.role,
+        location: formData.location || undefined,
+        details: formData.details || undefined,
+        start_date: formData.start_date || undefined,
+        end_date: formData.end_date || undefined,
+      };
+      await onSubmit(cleanedData);
     } catch (err: any) {
       setError(err.message || "Failed to save work experience");
     } finally {
