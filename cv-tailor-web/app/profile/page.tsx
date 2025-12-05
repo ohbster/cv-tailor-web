@@ -91,12 +91,20 @@ export default function ProfilePage() {
                 </h2>
                 <p className="text-sm text-gray-500 dark:text-gray-400">ID: {profile.id}</p>
               </div>
-              <Link
-                href="/profile/edit"
-                className="px-4 py-2 bg-indigo-600 dark:bg-indigo-500 text-white rounded-lg hover:bg-indigo-700 dark:hover:bg-indigo-600 transition"
-              >
-                Edit Profile
-              </Link>
+              <div className="flex gap-3">
+                <Link
+                  href="/profile/edit"
+                  className="px-4 py-2 bg-indigo-600 dark:bg-indigo-500 text-white rounded-lg hover:bg-indigo-700 dark:hover:bg-indigo-600 transition"
+                >
+                  Edit Profile
+                </Link>
+                <Link
+                  href="/profile/builder"
+                  className="px-4 py-2 bg-blue-600 dark:bg-blue-500 text-white rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 transition"
+                >
+                  Build Profile
+                </Link>
+              </div>
             </div>
 
             <div className="space-y-4">

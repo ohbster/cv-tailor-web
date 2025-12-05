@@ -58,7 +58,7 @@ export default function Home() {
           </div>
 
           {/* Action Cards */}
-          <div className="grid md:grid-cols-2 gap-6 mb-12">
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
             {session ? (
               <>
                 <Link
@@ -76,7 +76,26 @@ export default function Home() {
                     </h2>
                   </div>
                   <p className="text-gray-600 dark:text-gray-300">
-                    View and manage your professional profile, skills, and experience
+                    View and manage your professional profile
+                  </p>
+                </Link>
+
+                <Link
+                  href="/profile/builder"
+                  className="group p-8 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-transparent hover:border-green-500"
+                >
+                  <div className="flex items-center mb-4">
+                    <div className="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center mr-4">
+                      <svg className="w-6 h-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                      </svg>
+                    </div>
+                    <h2 className="text-2xl font-semibold text-gray-900 dark:text-white group-hover:text-green-600 dark:group-hover:text-green-400">
+                      Build Profile
+                    </h2>
+                  </div>
+                  <p className="text-gray-600 dark:text-gray-300">
+                    Add skills, experience, and certifications
                   </p>
                 </Link>
 
@@ -95,7 +114,7 @@ export default function Home() {
                     </h2>
                   </div>
                   <p className="text-gray-600 dark:text-gray-300">
-                    Create and manage tailored resumes for different job applications
+                    Create and manage tailored resumes
                   </p>
                 </Link>
               </>

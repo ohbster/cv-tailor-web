@@ -49,7 +49,7 @@ export default function SignUpPage() {
     setLoading(true);
 
     try {
-      // Register user
+      // Register user with JSON body
       const response = await fetch(`${API_URL}/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
